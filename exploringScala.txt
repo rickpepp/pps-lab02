@@ -1,0 +1,31 @@
+- Dichiarazione val e tentativi formattazione con println
+	println(w)
+	println(s"The result is ${w}")
+	println(s"The result is ${w + 1}")
+- Dichiarazione di funzione e usata nel println:
+	def square(d: Double): Double = d * d
+	println(s"The square of 5 is ${square(5)}")
+- Realizzato un fattoriale:	
+	def factorial(n: Int): Int = n match
+		case 0 | 1 => 1
+		case _ => n * factorial(n - 1)
+- Realizzato un abs:
+	def abs(n: Double): Double = match
+		case x if x >= 0: n
+		case _: -n
+- Realizzata una funzione di alto livello
+	val h: (Int, Int, (Int, Int) => Int) =
+		(a, b, f) => f(a, b)
+	println(s"Sum of 4 and 5 is ${h(4, 5, (a, b) => a + b)}")
+- Realizzato sum type tra PC e Smartphone = Device
+	enum Device:
+		case PC(vendor: String, serialNumber: Double)
+		case Smartphone(vendor: String, screenSize: Double)
+	def vendor(device: Device): String = match
+		case Device.PC(s, _) => s
+		case Device.Smartphone(s, _) => s
+	println(name(Device.PC("HP", 98982)))
+- Realizzato un multiplication type
+	def sumOf2DPoints(p1: Point2D, p2: Point2D): Point2D = (p1, p2) match
+     		case (Point2D(x1, y1), Point2D(x2, y2)) => Point2D(x1 + x2, y1 + y2)
+     	println(sumOf2DPoints(Point2D(5, -1), Point2D(-2.3, -0.1)))
