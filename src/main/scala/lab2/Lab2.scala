@@ -27,3 +27,9 @@ object Lab2 extends App:
 
   val nonCurriedFunVal : (Double, Double, Double) => Boolean =
     (x, y, z) => (x <= y) && (x + y) == z
+
+  def compose[X, Y, Z](f: Y => Z, g: X => Y): X => Z =
+    x => f(g(x))
+
+  def composeThree[A, B, C, D](f: C => D, g: B => C, h: A => B): A => D =
+    x => compose(compose(f, g), h)(x)

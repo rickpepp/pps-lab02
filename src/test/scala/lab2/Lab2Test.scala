@@ -64,6 +64,12 @@ class Lab2Test:
   @Test def testNonCurriedFunValFalse(): Unit =
     assertFalse(prova.nonCurriedFunVal(6, 5, 11))
 
+  @Test def testComposeFunction(): Unit =
+    assertEquals(9, prova.compose[Int, Int, Int](_ - 1, _ * 2)(5))
+
+  @Test def testComposeThreeFunction(): Unit =
+    assertEquals("6!", prova.composeThree[Int, Int, String, String](_ + "!", _.toString, _ * 2)(3))
+
   private def createEvenFunctionWithNegGeneric(): (Int => Boolean) =
     val isOdd: (Int => Boolean) = (x) => (x % 2) == 1
     return prova.negGeneric(isOdd)
