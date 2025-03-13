@@ -32,13 +32,37 @@ class Lab2Test:
     val notEmpty = createNotEmptyPredicate()
     assertTrue(notEmpty("foo") && !notEmpty(""))
 
-  @Test def testNefFunctionGenericEvenNumberTrue(): Unit =
+  @Test def testNegFunctionGenericEvenNumberTrue(): Unit =
     val isEven = createEvenFunctionWithNegGeneric()
     assertTrue(isEven(22))
 
-  @Test def testNefFunctionGenericEvenNumberFalse(): Unit =
+  @Test def testNegFunctionGenericEvenNumberFalse(): Unit =
     val isEven = createEvenFunctionWithNegGeneric()
     assertFalse(isEven(21))
+
+  @Test def testCurriedFunDefTrue(): Unit =
+    assertTrue(prova.curriedFunDef(3)(5)(8))
+
+  @Test def testCurriedFunDefFalse(): Unit =
+    assertFalse(prova.curriedFunDef(6)(5)(11))
+
+  @Test def testNonCurriedFunDefTrue(): Unit =
+    assertTrue(prova.nonCurriedFunDef(3, 5, 8))
+
+  @Test def testNonCurriedFunDefFalse(): Unit =
+    assertFalse(prova.nonCurriedFunDef(6, 5, 11))
+
+  @Test def testCurriedFunValTrue(): Unit =
+    assertTrue(prova.curriedFunVal(3)(5)(8))
+
+  @Test def testCurriedFunValFalse(): Unit =
+    assertFalse(prova.curriedFunVal(6)(5)(11))
+
+  @Test def testNonCurriedFunValTrue(): Unit =
+    assertTrue(prova.nonCurriedFunVal(3, 5, 8))
+
+  @Test def testNonCurriedFunValFalse(): Unit =
+    assertFalse(prova.nonCurriedFunVal(6, 5, 11))
 
   private def createEvenFunctionWithNegGeneric(): (Int => Boolean) =
     val isOdd: (Int => Boolean) = (x) => (x % 2) == 1
