@@ -46,3 +46,12 @@ object Lab2 extends App:
       case _ => loop(actualResult * base, exponents - 1)
     loop(1, exponent)
 
+  def reverseNumber(n: Int): Int =
+    @annotation.tailrec
+    def loop(actualResult: Int, residualDigits: Int): Int = residualDigits match
+      case 0 => actualResult
+      case _ => actualResult match
+        case 0 => loop((residualDigits % 10), residualDigits / 10)
+        case _ => loop((actualResult * 10) + (residualDigits % 10), residualDigits / 10)
+    loop(0, n)
+

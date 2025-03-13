@@ -11,3 +11,6 @@ class Lab2Task3Test:
 
   @Test def testPowerTailRecursive(): Unit =
     assertEquals((8.0, 25.0), (prova.powerTail(2, 3), prova.powerTail(5, 2)))
+
+  @Test def testReverseNumber(): Unit =
+    assertEquals(54321, prova.reverseNumber(12345))
