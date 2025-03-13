@@ -1,6 +1,5 @@
 package lab2
 
-import lab2.Lab2.neg
 import org.junit.*
 import org.junit.Assert.*
 
@@ -33,6 +32,18 @@ class Lab2Test:
     val notEmpty = createNotEmptyPredicate()
     assertTrue(notEmpty("foo") && !notEmpty(""))
 
+  @Test def testNefFunctionGenericEvenNumberTrue(): Unit =
+    val isEven = createEvenFunctionWithNegGeneric()
+    assertTrue(isEven(22))
+
+  @Test def testNefFunctionGenericEvenNumberFalse(): Unit =
+    val isEven = createEvenFunctionWithNegGeneric()
+    assertFalse(isEven(21))
+
+  private def createEvenFunctionWithNegGeneric(): (Int => Boolean) =
+    val isOdd: (Int => Boolean) = (x) => (x % 2) == 1
+    return prova.negGeneric(isOdd)
+
   private def createNotEmptyPredicate(): (String => Boolean) =
     val empty: String => Boolean = _ == ""
-    return neg(empty)
+    return prova.neg(empty)

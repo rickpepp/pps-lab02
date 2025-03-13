@@ -12,3 +12,6 @@ object Lab2 extends App:
 
   def neg(predicate: (String => Boolean)): (String => Boolean) =
     (s) => !predicate(s)
+    
+  def negGeneric[X](predicate: (X => Boolean)): (X => Boolean) =
+    (x) => !predicate(x)
