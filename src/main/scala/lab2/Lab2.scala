@@ -1,5 +1,7 @@
 package lab2
 
+import lab2.Lab2.Expr.{Add, Literal}
+
 object Lab2 extends App:
   // Task 2
   def positiveSyntax(b: Int): String = b match
@@ -55,3 +57,18 @@ object Lab2 extends App:
         case _ => loop((actualResult * 10) + (residualDigits % 10), residualDigits / 10)
     loop(0, n)
 
+  //Task 4
+  enum Expr:
+    case Literal(number: Int)
+    case Add(expr1: Expr, expr2: Expr)
+    case Multiply(expr1: Expr, expr2: Expr)
+
+  def evaluate(expr: Expr): Int = expr match
+    case Expr.Literal(n) => n
+    case Expr.Add(n1, n2) => evaluate(n1) + evaluate(n2)
+    case Expr.Multiply(n1, n2) => evaluate(n1) * evaluate(n2)
+
+  def show(expr: Expr): String = expr match
+    case Expr.Literal(n) => s"${n}"
+    case Expr.Add(n1, n2) => s"(${show(n1)}" + " + " + s"${show(n2)})"
+    case Expr.Multiply(n1, n2) => s"(${show(n1)}" + " * " + s"${show(n2)})"
