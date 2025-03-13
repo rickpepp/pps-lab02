@@ -33,3 +33,16 @@ object Lab2 extends App:
 
   def composeThree[A, B, C, D](f: C => D, g: B => C, h: A => B): A => D =
     x => compose(compose(f, g), h)(x)
+
+  // Task 3
+  def power(base: Double, exponent: Int): Double = exponent match
+    case 0 => 1
+    case _ => base * power(base, exponent - 1)
+
+  def powerTail(base: Double, exponent: Int): Double =
+    @annotation.tailrec
+    def loop(actualResult: Double, exponents: Double): Double = exponents match
+      case 0 => actualResult
+      case _ => loop(actualResult * base, exponents - 1)
+    loop(1, exponent)
+

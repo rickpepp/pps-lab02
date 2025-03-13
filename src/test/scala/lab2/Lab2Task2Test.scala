@@ -3,7 +3,7 @@ package lab2
 import org.junit.*
 import org.junit.Assert.*
 
-class Lab2Test:
+class Lab2Task2Test:
   private val prova = Lab2
   private val positiveValue = 4
   private val negativeValue = -4
