@@ -2,15 +2,13 @@ package lab2
 
 object Lab2 extends App:
   // Task 2
-  // a
-  val positive: (Int) => String = (n) => n match
-      case n if n >= 0 => "positive"
-      case _ => "negative"
+  def positiveSyntax(b: Int): String = b match
+    case b if b >= 0 => "positive"
+    case _ => "negative"
 
-  val positiveNumber = 4
-  val negativeNumber = -7
+  val positiveLiteral: (Int) => String = (n) => n match
+    case n if n >= 0 => "positive"
+    case _ => "negative"
 
-  println(s"${positiveNumber} is a ${positive(positiveNumber)} number")
-  println(s"${negativeNumber} is a ${positive(negativeNumber)} number")
-
-  
+  def neg(predicate: (String => Boolean)): (String => Boolean) =
+    (s) => !predicate(s)
