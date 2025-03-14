@@ -7,38 +7,44 @@ class Lab2Task2Test:
   private val prova = Lab2
   private val positiveValue = 4
   private val negativeValue = -4
+  private val positiveString = "positive"
+  private val negativeString = "negative"
+  private val evenNumber = 22
+  private val oddNumber = 21
+  private val emptyString = ""
+  private val nonEmptyString = "foo"
 
   @Test def testPositiveLiteralPositiveValue(): Unit =
-    assertEquals("positive", prova.positiveLiteral(positiveValue))
+    assertEquals(positiveString, prova.positiveLiteral(positiveValue))
 
   @Test def testPositiveLiteralNegativeValue(): Unit =
-    assertEquals("negative", prova.positiveLiteral(negativeValue))
+    assertEquals(negativeString, prova.positiveLiteral(negativeValue))
 
   @Test def testPositiveSyntaxPositiveValue(): Unit =
-    assertEquals("positive", prova.positiveSyntax(positiveValue))
+    assertEquals(positiveString, prova.positiveSyntax(positiveValue))
 
   @Test def testPositiveSyntaxNegativeValue(): Unit =
-    assertEquals("negative", prova.positiveSyntax(negativeValue))
+    assertEquals(negativeString, prova.positiveSyntax(negativeValue))
 
   @Test def testNegFunctionNotEmpty(): Unit =
     val notEmpty = createNotEmptyPredicate()
-    assertTrue(notEmpty("foo"))
+    assertTrue(notEmpty(nonEmptyString))
 
   @Test def testNegFunctionEmpty(): Unit =
     val notEmpty = createNotEmptyPredicate()
-    assertFalse(notEmpty(""))
+    assertFalse(notEmpty(emptyString))
 
   @Test def testNegFunctionComposite(): Unit =
     val notEmpty = createNotEmptyPredicate()
-    assertTrue(notEmpty("foo") && !notEmpty(""))
+    assertTrue(notEmpty(nonEmptyString) && !notEmpty(emptyString))
 
   @Test def testNegFunctionGenericEvenNumberTrue(): Unit =
     val isEven = createEvenFunctionWithNegGeneric()
-    assertTrue(isEven(22))
+    assertTrue(isEven(evenNumber))
 
   @Test def testNegFunctionGenericEvenNumberFalse(): Unit =
     val isEven = createEvenFunctionWithNegGeneric()
-    assertFalse(isEven(21))
+    assertFalse(isEven(oddNumber))
 
   @Test def testCurriedFunDefTrue(): Unit =
     assertTrue(prova.curriedFunDef(3)(5)(8))
@@ -75,5 +81,5 @@ class Lab2Task2Test:
     return prova.negGeneric(isOdd)
 
   private def createNotEmptyPredicate(): (String => Boolean) =
-    val empty: String => Boolean = _ == ""
+    val empty: String => Boolean = _ == emptyString
     return prova.neg(empty)
